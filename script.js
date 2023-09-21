@@ -1,30 +1,28 @@
 //your code here!
+let ol = document.getElementById("infi-list");
+let count = 1;
 
-function addItemsToList() {
-    const list = document.getElementById("list");
 
-    // Add 2 more list items
-    for (let i = 0; i < 2; i++) {
-        const newItem = document.createElement("li");
-        newItem.textContent = `Item ${list.children.length + 1}`;
-        list.appendChild(newItem);
-    }
+function loadContent(num)
+{
+	for(let i= 1; i <= num;i++)
+		{
+			let li = document.createElement("li");
+			li.innerText = `Item ${count}`;
+		   ol.appendChild(li);
+			count++;
+		}
 }
 
-// Add about 10 list items by default
-for (let i = 1; i <=10; i++) {
-    const newItem = document.createElement("li");
-    newItem.textContent = `Item ${i}`;
-    document.getElementById("list").appendChild(newItem);
-}
+loadContent(10);
 
-// Attach a scroll event listener to the window
-window.addEventListener("scroll", function () {
-    const list = document.getElementById("list");
-
-    // Check if the user has reached the end of the list
-    if (window.innerHeight + window.scrollY >= list.clientHeight + list.offsetTop) {
-        // Add 2 more list items when the user reaches the end
-        addItemsToList();
+ol.addEventListener("scroll",(event)=>{
+ console.log("scrolled", window.scrollY) //scrolled from top
+    console.log(window.innerHeight) //visible part of screen
+    if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight){
+      			let li = document.createElement("li");
+			li.innerText = `Item ${count}`;
+		   ol.appendChild(li);
+			count++;
     }
-});
+})
